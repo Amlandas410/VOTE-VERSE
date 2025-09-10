@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="title-wrap">
+        <div class="pill">Vote Verse • Your universe of voting🤖</div>
+        <h1 style="margin-top:10px">Run simple polls in seconds</h1>
+        <p class="muted">We all have to vote like our lives and the world depend on it, because they do.</p>
+      </div>
+      <div class="card" style="min-width:280px">
+        <div class="grid">
+          <div class="row">
+            <button class="btn primary" id="btnHost" aria-label="Host an election">🎛️ Host</button>
+            <button class="btn alt" id="btnVoter" aria-label="Vote in an election">🗳️ Voter</button>
+            <button class="btn warn" id="btnResults" aria-label="View results">📊 Results</button>
+          </div>
+          <div class="note">Data lives in your browser (<code>localStorage</code>). For real elections, you’ll need a secure backend with audits, auth, and crypto.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== HOST ============== -->
+    <section id="host" class="card hidden" aria-labelledby="host-h">
+      <div class="row" style="justify-content:space-between">
+        <h2 id="host-h">Host Console</h2>
+        <button class="btn ghost small" data-nav="home">← Back</button>
+      </div>
+      <div class="split">
+        <div>
+          <h3>Create a new election</h3>
+          <div class="field">
+            <label for="eTitle">Election title</label>
+            <input id="eTitle" type="text" placeholder="e.g., Class Representative 2025" />
+          </div>
+          <div class="field">
+            <label for="eDesc">Description (optional)</label>
+            <textarea id="eDesc" placeholder="Purpose, rules, etc."></textarea>
+          </div>
+          <div class="field">
+            <label for="eCandidates">Candidates (one per line)</label>
+            <textarea id="eCandidates" placeholder="Alice Johnson
+Ben Singh
+Carla Gomez"></textarea>
+          </div>
+          <div class="split">
+            <div class="field">
+              <label><input type="checkbox" id="eRequireCodes" /> Require voter codes</label>
+              <div class="row">
+                <input id="eCodeCount" type="number" min="1" value="20" style="max-width:160px" />
+                <span class="muted">codes to generate</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="eWhen">(Optional) Auto-close at</label>
+              <input id="eWhen" type="datetime-local" />
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn primary" id="createElection">Create</button>
+            <button class="btn ghost" id="resetHostForm">Reset</button>
+          </div>
+        </div>
+        <div>
+          <h3>Manage an election</h3>
+          <div class="field">
+            <label for="manageId">Election ID</label>
+            <input id="manageId" class="code" type="text" placeholder="Enter ID (e.g., 3F2X7C)" />
+          </div>
+          <div class="row">
+            <button class="btn" id="loadElection">Load</button>
+            <button class="btn ghost" id="copyManageLink">Copy Results Link</button>
+          </div>
+          <div id="managePanel" class="hidden">
+            <div class="hr"></div>
+            <div class="row" style="justify-content:space-between; align-items:flex-start">
+              <div>
+                <div class="badge">Status: <span id="mStatus" class="status draft" style="margin-left:6px">draft</span></div>
+                <h2 id="mTitle" style="margin-top:8px"></h2>
+                <p id="mDesc" class="muted"></p>
+                <p class="muted">Election ID: <span class="code copy" id="mIdCopy"></span></p>
+              </div>
+              <div class="row">
+                <button id="btnOpen" class="btn primary small">Open voting</button>
+                <button id="btnClose" class="btn danger small">Close voting</button>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <h3>Voter Codes</h3>
+            <div id="codesBlock" class="muted">Not required for this election.</div>
+            <div class="row" id="codesActions" class="hidden">
+              <button class="btn small" id="btnDownloadCodes">⬇️ Download CSV</button>
+              <button class="btn ghost small" id="btnShowCodes">👀 Reveal (toggle)</button>
+            </div>
+            <div id="codesList" class="hidden note" style="margin-top:10px; white-space:pre; max-height:180px; overflow:auto"></div>
+
+            <div class="hr"></div>
+
+            <h3>Live results</h3>
+            <div id="liveChart" class="chart"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== VOTER ============== -->
+    <section id="voter" class="card hidden" aria-labelledby="voter-h">
+      <div class="row" style="justify-content:space-between">
+        <h2 id="voter-h">Voter</h2>
+        <button class="btn ghost small" data-nav="home">← Back</button>
+      </div>
+      <div class="field">
+        <label for="vElectionId">Election ID</label>
+        <input id="vElectionId" class="code" type="text" placeholder="Enter ID provided by host" />
+      </div>
+      <div class="field" id="vCodeWrap" class="hidden">
+        <label for="vCode">Voter code (if required)</label>
+        <input id="vCode" class="code" type="text" placeholder="e.g., X9K7-2TJ4" />
+      </div>
+      <div class="field">
+        <label for="vName">Your name (optional, for receipt)</label>
+        <input id="vName" type="text" placeholder="e.g., Priya S." />
+      </div>
+      <div class="row">
+        <button class="btn alt" id="vLoad">Load Ballot</button>
+        <button class="btn ghost" id="vClear">Clear</button>
+      </div>
+
+      <div id="ballot" class="hidden" style="margin-top:16px">
+        <div class="badge" id="bStatus"></div>
+        <h3 id="bTitle" style="margin-top:10px"></h3>
+        <p id="bDesc" class="muted"></p>
+        <div id="bOptions" class="grid" style="margin:10px 0 8px"></div>
+        <div class="row">
+          <button class="btn primary" id="castVote">Cast Vote</button>
+          <span class="muted">One vote per device/code.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== RESULTS ============== -->
+    <section id="results" class="card hidden" aria-labelledby="results-h">
+      <div class="row" style="justify-content:space-between">
+        <h2 id="results-h">Results</h2>
+        <button class="btn ghost small" data-nav="home">← Back</button>
+      </div>
+      <div class="field">
+        <label for="rElectionId">Election ID</label>
+        <input id="rElectionId" class="code" type="text" placeholder="Enter ID (e.g., 3F2X7C)" />
+      </div>
+      <div class="row">
+        <button class="btn warn" id="rLoad">View Results</button>
+        <button class="btn ghost" id="rShare">Copy Results Link</button>
+      </div>
+
+      <div id="rPanel" class="hidden" style="margin-top:14px">
+        <div class="row" style="justify-content:space-between; align-items:flex-end">
+          <div>
+            <div class="badge">Status: <span id="rStatus" class="status draft" style="margin-left:6px">draft</span></div>
+            <h3 id="rTitle" style="margin-top:10px"></h3>
+            <p id="rDesc" class="muted"></p>
+          </div>
+          <div class="muted">Election ID: <span id="rId" class="code"></span></div>
+        </div>
+        <div class="hr"></div>
+        <div id="rChart" class="chart"></div>
+        <div class="hr"></div>
+        <table class="table" id="rTable"></table>
+      </div>
+    </section>
+
+    <div class="footer">Vote Verse © 2025 • Developed By: Amlan Sekhar Das, Nilakantha Pati and Ashish Pradhan.</div>
+  </div>
+      
+</body>
+</html>
