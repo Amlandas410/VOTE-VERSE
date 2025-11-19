@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Verse - Online Voting System</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-gradient"></div>
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content fade-in-left">
+                        <div class="badge scale-in">
+                            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span>Modern Democracy Platform</span>
+                        </div>
+                        <h1 class="hero-title slide-up">
+                            Welcome to <span class="gradient-text">Vote Verse</span>
+                        </h1>
+                        <p class="hero-description slide-up-delay">
+                            Experience the future of democratic participation with our secure, transparent, and accessible online voting system. Your voice matters, and we make sure it's heard.
+                        </p>
+                        <div class="hero-button-wrapper slide-up-delay-2">
+                            <button class="primary-button" onclick="startVoting()">
+                                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 11l3 3L22 4"></path>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
+                                Start Vote Verse
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper fade-in-right">
+                        <div class="hero-image-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1579642984094-5be053d579b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b3RpbmclMjBkZW1vY3JhY3l8ZW58MXx8fHwxNzYzNDIwODUwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Democracy and Voting" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Why Choose Vote Verse?</h2>
+                    <p class="section-description">
+                        Our platform combines cutting-edge technology with user-friendly design to revolutionize the voting experience.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1632910110458-435eb54b8d9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cmUlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2MzUzMjU1NHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Secure & Reliable" class="feature-image">
+                            <div class="feature-image-overlay"></div>
+                            <div class="feature-icon-wrapper">
+                                <div class="feature-icon-circle">
+                                    <svg class="feature-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Secure & Reliable</h3>
+                            <p>Advanced encryption and security measures protect your vote and personal information.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1584370848742-67e02add3a8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjB2b3Rpbmd8ZW58MXx8fHwxNzYzNTMyNTU1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Easy to Use" class="feature-image">
+                            <div class="feature-image-overlay"></div>
+                            <div class="feature-icon-wrapper">
+                                <div class="feature-icon-circle">
+                                    <svg class="feature-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 11l3 3L22 4"></path>
+                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Easy to Use</h3>
+                            <p>Simple and intuitive interface makes voting accessible to everyone, anywhere, anytime.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwc2VjdXJpdHl8ZW58MXx8fHwxNzYzNTAzMDM4fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Transparent Process" class="feature-image">
+                            <div class="feature-image-overlay"></div>
+                            <div class="feature-icon-wrapper">
+                                <div class="feature-icon-circle">
+                                    <svg class="feature-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Transparent Process</h3>
+                            <p>Track your vote and ensure it's counted with our transparent verification system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-description">
+                        Voting has never been easier. Follow these simple steps to make your voice heard.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Register</h3>
+                        <p>Create your account with verified credentials</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Authenticate</h3>
+                        <p>Log in securely to access the voting portal</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Cast Your Vote</h3>
+                        <p>Select your candidates and submit your ballot</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h3>Verify</h3>
+                        <p>Receive confirmation and track your vote</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>Ready to Make Your Voice Heard?</h2>
+                    <p>Join thousands of citizens who trust Vote Verse for secure and transparent online voting.</p>
+                    <button class="primary-button" onclick="startVoting()">
+                        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Start Vote Verse
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <h3>Vote Verse</h3>
+                    <p class="footer-tagline">Empowering democracy through technology</p>
+                    <div class="footer-copyright">
+                        © 2025 Vote Verse. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js">// Redirect to voting system
+</script>
+</body>
+</html>
